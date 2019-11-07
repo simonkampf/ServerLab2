@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:view>
+    <h:body>
+        <h:form>
+
+            <p>Send a message: </p>
+            <p>
+                Private message: <h:selectBooleanCheckbox value="#{userBean.sendPrivate}">
+                </h:selectBooleanCheckbox>
+
+            </p>
+            <p>
+                Receiver: <h:outputText value="#{userBean.getReceiverName()}"
+            />
+            </p>
+            <p>Content
+                <h:inputTextarea value="#{userBean.newPostContent}"
+                             title="Enter message:"
+                             required="true"
+                             requiredMessage="Error: a message is required"
+                             maxlength="200"
+                             rows="5"
+                />
+            </p>
+            <h:commandButton value="Send message"
+                             action="#{userBean.sendNewPost()}"/>
+
+
+        </h:form>
+
+        <h:form>
+            <h:commandButton action = "back" value = "back" />
+        </h:form>
+    </h:body>
+</f:view>
+</html>
