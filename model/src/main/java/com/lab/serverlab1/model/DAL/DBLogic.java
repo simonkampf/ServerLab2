@@ -9,7 +9,9 @@ public class DBLogic {
     private static EntityManagerFactory emf =
                 Persistence.createEntityManagerFactory("test");
     
-   
+    public DBLogic(){
+        System.out.println("Creating db logic");
+    }
     public void addUser(TUserEntity user) {
         EntityManager em = emf.createEntityManager();
      

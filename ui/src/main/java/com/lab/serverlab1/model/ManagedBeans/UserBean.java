@@ -1,7 +1,7 @@
 package com.lab.serverlab1.model.ManagedBeans;
 
-import com.lab.serverlab1.model.BLL.BllHandler;
 import com.lab.serverlab1.model.BLL.PostInfo;
+import com.lab.serverlab1.model.BLL.RequestManager;
 import com.lab.serverlab1.model.BLL.UserInfo;
 import com.mysql.cj.Session;
 
@@ -28,7 +28,7 @@ public class UserBean implements Serializable {
     private boolean sendPrivate;
     private String newPostContent;
     private UserInfo userInfoLog;
-
+    public boolean isLoggedIn = false;
     public String getNewPostContent() {
         return newPostContent;
     }
@@ -77,31 +77,34 @@ public class UserBean implements Serializable {
     }
 
     public boolean isLoggedIn(){
-        String res = checkCookie();
-        System.out.println("cookie result:" + res);
-        if(res.equals("")) return false;
-        userInfo.setUsername(res);
-        return true;
+     //   String res = checkCookie();
+      //  System.out.println("cookie result:" + res);
+       // if(res.equals("")) return false;
+
+       // userInfo.setUsername(res);
+        return isLoggedIn;
+      //  return true;
     }
     public String checkCredentials(){
         System.out.println("Get details");
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
-        if(BllHandler.checkCredentials(userInfo.getUsername(), userInfo.getPassword())){
-            Cookie usernameCookie = new Cookie("username", userInfo.getUsername());
-            usernameCookie.setMaxAge(3600);
-            response.addCookie(usernameCookie);
+        if(RequestManager.checkCredentials(userInfo.getUsername(), userInfo.getPassword())){
+         //   Cookie usernameCookie = new Cookie("username", userInfo.getUsername());
+          //  usernameCookie.setMaxAge(3600);
+           // response.addCookie(usernameCookie);
+            isLoggedIn = true;
             userNameToView = userInfo.getUsername();
             return "Success";
         }
         return "Failure";
     }
     public void setUserInfoLog(){
-        userInfoLog = BllHandler.getUserByUsername(userNameToView);
+        userInfoLog = RequestManager.getUserByUsername(userNameToView);
     }
     public List<String> getUserNames() {
         System.out.println("I getusernames");
-        userNames = BllHandler.getUsernamesByLetters(searchName);
+        userNames = RequestManager.getUsernamesByLetters(userInfo, searchName);
         return userNames;
     }
 
@@ -113,7 +116,8 @@ public class UserBean implements Serializable {
         return userInfo.getUsername();
     }
     public String logOut(){
-        System.out.println("log out");
+
+      /*  System.out.println("log out");
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -122,7 +126,8 @@ public class UserBean implements Serializable {
                 c.setMaxAge(0);
                 response.addCookie(c);
             }
-        }
+        }*/
+        isLoggedIn = false;
         userNameToView = "";
         return "LogOut";
     }
@@ -159,12 +164,12 @@ public class UserBean implements Serializable {
 
     public String sendNewPost(){
         System.out.println("sender: " + userInfo.getUsername() + ", receiver: " + receiverName + ", content: " + newPostContent + ", send private:" + sendPrivate);
-        BllHandler.createNewPost(new PostInfo(userInfo.getUsername(), receiverName, newPostContent, new Date(), sendPrivate));
+        RequestManager.createNewPost(userInfo, new PostInfo(userInfo.getUsername(), receiverName, newPostContent, new Date(), sendPrivate));
         return "log";
     }
 
     public String confirmNewUser(){
-        boolean result = BllHandler.addNewUser(userInfo.getUsername(), userInfo.getPassword(), userInfo.getName(), userInfo.getAge());
+        boolean result = RequestManager.addNewUser(userInfo.getUsername(), userInfo.getPassword(), userInfo.getName(), userInfo.getAge());
         if(result == true){
             return "Success";
         }

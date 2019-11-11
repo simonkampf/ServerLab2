@@ -5,6 +5,7 @@ public class UserInfo {
     private String password;
     private String name;
     private int age;
+
     public UserInfo(){
         username = "";
         password = "";

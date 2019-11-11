@@ -1,7 +1,7 @@
 package com.lab.serverlab1.model.ManagedBeans;
 
-import com.lab.serverlab1.model.BLL.BllHandler;
 import com.lab.serverlab1.model.BLL.PostInfo;
+import com.lab.serverlab1.model.BLL.RequestManager;
 import com.lab.serverlab1.model.BLL.UserInfo;
 
 import javax.faces.bean.ManagedBean;
@@ -30,8 +30,8 @@ public class LogBean implements Serializable {
         return privatePosts;
     }
     public void populatePrivatePosts(String userNameToView){
-        userInfo = BllHandler.getUserByUsername(userNameToView);
-        posts = BllHandler.getAllPrivatePostsByUser(userInfo);
+        userInfo = RequestManager.getUserByUsername(userNameToView);
+        posts = RequestManager.getAllPrivatePostsByUser(userInfo, userInfo);
     }
 
     public UserInfo getUserInfo() {
@@ -39,7 +39,8 @@ public class LogBean implements Serializable {
     }
 
     public void populate(String userNameToView){
-        userInfo = BllHandler.getUserByUsername(userNameToView);
-        posts = BllHandler.getAllPublicPostsByUser(userInfo);
+        userInfo = RequestManager.getUserByUsername(userNameToView);
+        System.out.println("Userinfo from populate: " + userInfo.getUsername() + ", " + userInfo.getName() );
+        posts = RequestManager.getAllPublicPostsByUser(userInfo, userInfo);
     }
 }
