@@ -31,7 +31,7 @@ public class TPostEntity {
     }
 
     @Id
-    @Column(name = "idT_Post")
+    @Column(name = "idt_post")
     public int getIdTPost() {
         return idTPost;
     }
@@ -41,7 +41,7 @@ public class TPostEntity {
     }
 
     @Basic
-    @Column(name = "T_Message")
+    @Column(name = "t_message")
     public String getMessage() {
         return tMessage;
     }
@@ -51,7 +51,7 @@ public class TPostEntity {
     }
 
     @Basic
-    @Column(name = "T_Time")
+    @Column(name = "t_time")
     public Timestamp getTime() {
         return tTime;
     }
@@ -83,7 +83,7 @@ public class TPostEntity {
     }
 
     @Basic
-    @Column(name = "T_SenderId")
+    @Column(name = "T_senderid")
     public int getSenderId() {
         return tSenderId;
     }
@@ -93,7 +93,7 @@ public class TPostEntity {
     }
 
     @Basic
-    @Column(name = "t_receiverId")
+    @Column(name = "t_receiverid")
     public int getReceiverId() {
         return tReceiverId;
     }

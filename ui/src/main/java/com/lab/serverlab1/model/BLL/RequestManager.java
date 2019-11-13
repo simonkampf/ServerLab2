@@ -19,11 +19,13 @@ import java.util.List;
 public class RequestManager {
     private static CloseableHttpClient httpClient = HttpClients.createDefault();
     private static Gson gson = new Gson();
+    private static String url = "http://172.19.0.3:8080/Model/";
     public RequestManager(){
     }
     public static boolean checkCredentials(String username, String password){
-        HttpGet req = new HttpGet("http://localhost:8080/checkCredentials?username=" + username +
-                                    "&password=" + password);
+
+        HttpGet req = new HttpGet(url + "checkCredentials?username=" + username +
+                                  "&password=" + password);
         System.out.println("Sending req: " + req.getURI());
         try{
             CloseableHttpResponse httpResponse = httpClient.execute(req);
@@ -44,12 +46,12 @@ public class RequestManager {
         }catch(Exception e){
             e.printStackTrace();
         }
-        return true;
+        return false;
     }
 
     public static boolean addNewUser(String username, String password, String name, int age) {
         name = name.replace(" ", "%20");
-        HttpPost req = new HttpPost("http://localhost:8080/addNewUser?username=" + username +
+        HttpPost req = new HttpPost(url + "addNewUser?username=" + username +
                 "&password=" + password + "&name=" + name + "&age=" + age);
         System.out.println("Sending req: " + req.getURI());
         try{
@@ -75,7 +77,7 @@ public class RequestManager {
     }
 
     public static UserInfo getUserByUsername(String userNameToView) {
-        HttpGet req = new HttpGet("http://localhost:8080/getUserByUsername?username=" + userNameToView);
+        HttpGet req = new HttpGet(url + "getUserByUsername?username=" + userNameToView);
         System.out.println("Sending req: " + req.getURI());
         UserInfo user = null;
         try{
@@ -104,7 +106,7 @@ public class RequestManager {
 
     }
     public static List<PostInfo> getAllPublicPostsByUser(UserInfo currentUser, UserInfo userInfo) {
-        HttpGet req = new HttpGet("http://localhost:8080/getAllPublicPostsByUser?username=" + userInfo.getUsername());
+        HttpGet req = new HttpGet(url + "getAllPublicPostsByUser?username=" + userInfo.getUsername());
         System.out.println("Sending req: " + req.getURI());
         req.addHeader("username", currentUser.getUsername());
         req.addHeader("password", currentUser.getPassword());
@@ -136,7 +138,7 @@ public class RequestManager {
     }
 
     public static List<PostInfo> getAllPrivatePostsByUser(UserInfo currentUser, UserInfo userInfo) {
-        HttpGet req = new HttpGet("http://localhost:8080/getAllPrivatePostsByUser?username=" + userInfo.getUsername());
+        HttpGet req = new HttpGet(url + "getAllPrivatePostsByUser?username=" + userInfo.getUsername());
         System.out.println("Sending req: " + req.getURI());
         req.addHeader("username", currentUser.getUsername());
         req.addHeader("password", currentUser.getPassword());
@@ -171,7 +173,7 @@ public class RequestManager {
         String content = postInfo.getContent();
         content = content.replace(" ",  "%20");
         System.out.println("Content: " + content);
-        HttpPost req = new HttpPost("http://localhost:8080/createNewPost?sender=" + postInfo.getSenderUsername() +
+        HttpPost req = new HttpPost(url + "createNewPost?sender=" + postInfo.getSenderUsername() +
                 "&receiver=" + postInfo.getReceiverUsername() + "&content=" + content +
                 "&private=" + postInfo.isPrivate());
         System.out.println("postinfo private: " + postInfo.isPrivate());
@@ -198,7 +200,7 @@ public class RequestManager {
     }
 
     public static List<String> getUsernamesByLetters(UserInfo currentUser, String searchName) {
-        HttpGet req = new HttpGet("http://localhost:8080/getUsernamesByLetters?letters=" + searchName);
+        HttpGet req = new HttpGet(url + "getUsernamesByLetters?letters=" + searchName);
         req.addHeader("username", currentUser.getUsername());
         req.addHeader("password", currentUser.getPassword());
         System.out.println("Sending req: " + req.getURI());

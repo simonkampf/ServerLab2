@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+    db:
+        build: 
+            context: .
+            dockerfile: ./docker/sql_docker/Dockerfile
+        environment:
+            MYSQL_ROOT_PASSWORD: hej
+        ports: 
+            - 3306:3306
+    model:
+        depends_on:
+            - db
+        build:
+            context: .
+            dockerfile: ./model/Dockerfile
+        ports:
+            - 8080:8080
+    ui:
+        depends_on:
+            - model
+        build:
+            context: .
+            dockerfile: ./ui/Dockerfile
+        ports:
+            - 8085:8080

@@ -112,6 +112,7 @@
                </includes>
            </resource>
        </resources>
+        <finalName>UI</finalName>
     </build>
 
 </project>

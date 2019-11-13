@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "T_user")
+@Table(name = "t_user")
 @NamedQueries({
         @NamedQuery(name = "TUserEntity.findAll", query = "SELECT u FROM TUserEntity u"),
         @NamedQuery(name = "TUserEntity.findByUsername", query = "SELECT u FROM TUserEntity u WHERE u.username = :username"),
@@ -16,7 +16,7 @@ public class TUserEntity {
     private String tName;
     private int tAge;
     @Id
-    @Column(name = "idT_user")
+    @Column(name = "idt_user")
     public int getIdTUser() {
         return idTUser;
     }
@@ -26,24 +26,24 @@ public class TUserEntity {
     }
     
     @Basic
-    @Column(name = "T_username")
+    @Column(name = "t_username")
     public String getUsername() {
         return tUsername;
     }
     @Basic
-    @Column(name = "T_password")
+    @Column(name = "t_password")
     public String getPassword() {
         return tPassword;
     }
     
     @Basic
-    @Column(name = "T_name")
+    @Column(name = "t_name")
     public String getName() {
         return tName;
     }
     
     @Basic
-    @Column(name = "T_age")
+    @Column(name = "t_age")
     public int getAge() {
         return tAge;
     }
