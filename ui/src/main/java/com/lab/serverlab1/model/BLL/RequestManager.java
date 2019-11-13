@@ -19,7 +19,7 @@ import java.util.List;
 public class RequestManager {
     private static CloseableHttpClient httpClient = HttpClients.createDefault();
     private static Gson gson = new Gson();
-    private static String url = "http://172.19.0.3:8080/Model/";
+    private static String url = "http://model:8080/Model/";
     public RequestManager(){
     }
     public static boolean checkCredentials(String username, String password){
