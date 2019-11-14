@@ -22,6 +22,13 @@ public class RequestManager {
     private static String url = "http://model:8080/Model/";
     public RequestManager(){
     }
+
+    /**
+     * Sends a GET-request for checking the credentials of the given username and password
+     * @param username
+     * @param password
+     * @return a boolean representing the result of the operation
+     */
     public static boolean checkCredentials(String username, String password){
 
         HttpGet req = new HttpGet(url + "checkCredentials?username=" + username +
@@ -49,6 +56,14 @@ public class RequestManager {
         return false;
     }
 
+    /**
+     * Sends a POST-request to add a new user with the given parameters
+     * @param username
+     * @param password
+     * @param name
+     * @param age
+     * @return a boolean representing the result of the operation
+     */
     public static boolean addNewUser(String username, String password, String name, int age) {
         name = name.replace(" ", "%20");
         HttpPost req = new HttpPost(url + "addNewUser?username=" + username +
@@ -76,6 +91,11 @@ public class RequestManager {
 
     }
 
+    /**
+     * Sends a GET-request for the given usernames corresponding UserInfo
+     * @param userNameToView
+     * @return
+     */
     public static UserInfo getUserByUsername(String userNameToView) {
         HttpGet req = new HttpGet(url + "getUserByUsername?username=" + userNameToView);
         System.out.println("Sending req: " + req.getURI());
@@ -105,6 +125,13 @@ public class RequestManager {
         return user;
 
     }
+
+    /**
+     * Sends a GET-request for the given user's log
+     * @param currentUser
+     * @param userInfo
+     * @return
+     */
     public static List<PostInfo> getAllPublicPostsByUser(UserInfo currentUser, UserInfo userInfo) {
         HttpGet req = new HttpGet(url + "getAllPublicPostsByUser?username=" + userInfo.getUsername());
         System.out.println("Sending req: " + req.getURI());
@@ -137,6 +164,12 @@ public class RequestManager {
         return target;
     }
 
+    /**
+     * Sends a GET-request for the given user's inbox
+     * @param currentUser
+     * @param userInfo
+     * @return
+     */
     public static List<PostInfo> getAllPrivatePostsByUser(UserInfo currentUser, UserInfo userInfo) {
         HttpGet req = new HttpGet(url + "getAllPrivatePostsByUser?username=" + userInfo.getUsername());
         System.out.println("Sending req: " + req.getURI());
@@ -169,6 +202,12 @@ public class RequestManager {
         return target;
     }
 
+    /**
+     * Sends a POST-request to create a new post with the given info
+     * @param currentUser
+     * @param postInfo
+     * @return a boolean representing the result of the operation
+     */
     public static boolean createNewPost(UserInfo currentUser, PostInfo postInfo) {
         String content = postInfo.getContent();
         content = content.replace(" ",  "%20");
@@ -199,6 +238,12 @@ public class RequestManager {
         return true;
     }
 
+    /**
+     * Sends a GET-request for all usernames that start with and/or equals the given search string
+     * @param currentUser
+     * @param searchName
+     * @return A List of strings, empty if none
+     */
     public static List<String> getUsernamesByLetters(UserInfo currentUser, String searchName) {
         HttpGet req = new HttpGet(url + "getUsernamesByLetters?letters=" + searchName);
         req.addHeader("username", currentUser.getUsername());

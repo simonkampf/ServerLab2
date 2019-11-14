@@ -16,6 +16,13 @@ import java.util.List;
 public class LabRestService {
     private Gson gson = new Gson();
     private boolean isAuthenticated = false;
+
+    /**
+     * Returns a UserInfo corresponding to the given username
+     * Returns 200 if successful
+     * @param username
+     * @return
+     */
     @GET
     @Path("/getUserByUsername")
     public Response getUserByUsername(@QueryParam("username") String username) {
@@ -26,11 +33,21 @@ public class LabRestService {
         return Response.status(200).entity(json).build();
     }
 
+
     @GET
     @Path("/goodbye")
     public Response goodbye() {
         return Response.status(200).entity("goodbye").build();
     }
+
+    /**
+     * Returns a json document containing a list with the given password
+     * Requires user to be logged in with credentials in header
+     * @param username
+     * @param password
+     * @param userToView
+     * @return 200 if successful, 401 if unauthorized
+     */
     @GET
     @Path("/getAllPublicPostsByUser")
     public Response getAllPublicPostsByUser(@HeaderParam("username") String username, @HeaderParam("password") String password,
@@ -43,6 +60,17 @@ public class LabRestService {
         String json = gson.toJson(posts, listType);
         return Response.status(200).entity(json).build();
     }
+
+
+    /**
+     * Returns all private posts to the logged in user
+     * Requires User to be logged in and credentials
+     * Credentials are checked for the parameter privateUser and password
+     * @param username
+     * @param password
+     * @param privateUser
+     * @return
+     */
     @GET
     @Path("/getAllPrivatePostsByUser")
     public Response getAllPrivatePostsByUser(@HeaderParam("username") String username, @HeaderParam("password") String password,
@@ -55,6 +83,14 @@ public class LabRestService {
         String json = gson.toJson(posts, listType);
         return Response.status(200).entity(json).build();
     }
+
+    /**
+     * Returns a boolean corresponding to the result
+     * Response status 200 if successful, 401 otherwise
+     * @param username
+     * @param password
+     * @return
+     */
     @GET // This annotation indicates GET request
     @Path("/checkCredentials")
     public Response checkCredentials(@QueryParam("username") String username, @QueryParam("password") String password) {
@@ -67,6 +103,17 @@ public class LabRestService {
             return Response.status(401).entity(result + ": Not authorized").build();
         }
     }
+
+    /**
+     * Adds a user with given parameters
+     * Returns 201 if successful
+     * Returns 400 if bad request
+     * @param username
+     * @param password
+     * @param name
+     * @param age
+     * @return
+     */
     @POST
     @Path("/addNewUser")
     public Response addNewUser(@QueryParam("username") String username, @QueryParam("password") String password,
@@ -80,6 +127,13 @@ public class LabRestService {
 
     }
 
+    /**
+     * Returns a list of all usernames that starts with and/or equals the given letters
+     * @param username
+     * @param password
+     * @param letters
+     * @return
+     */
     @GET
     @Path("/getUsernamesByLetters")
     public Response getUsernamesByLetters(@HeaderParam("username") String username, @HeaderParam("password") String password,
@@ -94,6 +148,18 @@ public class LabRestService {
 
     }
 
+    /**
+     * Adds a new post with the given parameters
+     * Returns 201 if successful
+     * Returns 400 if bad request
+     * @param username
+     * @param password
+     * @param sender
+     * @param receiver
+     * @param content
+     * @param isPrivate
+     * @return
+     */
     @POST
     @Path("/createNewPost")
     public Response createNewPost(@HeaderParam("username") String username, @HeaderParam("password") String password,

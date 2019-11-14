@@ -29,6 +29,11 @@ public class LogBean implements Serializable {
     public List<PostInfo> getPrivatePosts() {
         return privatePosts;
     }
+
+    /**
+     * Populates the current users inbox
+     * @param userNameToView
+     */
     public void populatePrivatePosts(String userNameToView){
         userInfo = RequestManager.getUserByUsername(userNameToView);
         posts = RequestManager.getAllPrivatePostsByUser(userInfo, userInfo);
@@ -38,6 +43,10 @@ public class LogBean implements Serializable {
         return userInfo;
     }
 
+    /**
+     * Populates the user to view's log
+     * @param userNameToView
+     */
     public void populate(String userNameToView){
         userInfo = RequestManager.getUserByUsername(userNameToView);
         System.out.println("Userinfo from populate: " + userInfo.getUsername() + ", " + userInfo.getName() );

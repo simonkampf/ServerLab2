@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Business logic layer
+ */
 public class BllHandler {
     private static DBLogic dbLogic = new DBLogic();
     public static void main(String [] args){
@@ -23,7 +26,12 @@ public class BllHandler {
         System.out.println();
     }
 
-
+    /**
+     * Validates the credentials of a user
+     * @param username the username
+     * @param password the password
+     * @return boolean representing the result
+     */
     public static boolean checkCredentials(String username, String password){
         List<TUserEntity> users = dbLogic.getUsers();
         for(TUserEntity t : users){
@@ -34,6 +42,15 @@ public class BllHandler {
         }
         return false;
     }
+
+    /**
+     * Adds a new user to the database according to the parameters
+     * @param username
+     * @param password
+     * @param name
+     * @param age
+     * @return boolean representing the outcome
+     */
     
     public static boolean addNewUser(String username, String password, String name, int age){
         TUserEntity user = new TUserEntity();
@@ -50,11 +67,22 @@ public class BllHandler {
         return true;
     }
 
+    /**
+     * Get a user corresponding to the parameter
+     * @param userNameToView
+     * @return UserInfo if user was found, otherwise null
+     */
+
     public static UserInfo getUserByUsername(String userNameToView) {
         TUserEntity user = dbLogic.getUserByUsername(userNameToView);
         return tUserEntityToUserInfo(user);
     }
 
+    /**
+     * Get all the public posts made by corresponding user
+     * @param username the user to view
+     * @return a list with posts, empty if none
+     */
     public static List<PostInfo> getAllPublicPostsByUser(String username) {
         TUserEntity user = dbLogic.getUserByUsername(username);
         List<TPostEntity> posts = dbLogic.getAllPostsByUser(user);
@@ -80,6 +108,12 @@ public class BllHandler {
 
         return postInfos;
     }
+
+    /**
+     * Get all the public posts made by corresponding user
+     * @param username the user to view
+     * @return a list with posts, empty if none
+     */
     public static List<PostInfo> getAllPrivatePostsByUser(String username) {
         TUserEntity user = dbLogic.getUserByUsername(username);
         List<TPostEntity> posts = dbLogic.getAllPostsByUser(user);
@@ -135,6 +169,15 @@ public class BllHandler {
     private static boolean booleanFromByte(Byte b){
         return b!=0;
     }
+
+    /**
+     * Creates a new post with the parameters
+     * @param senderName
+     * @param receiverName
+     * @param content
+     * @param isPrivate
+     * @return a boolean representing the result
+     */
     public static boolean createNewPost(String senderName, String receiverName, String content, boolean isPrivate) {
         TPostEntity post = new TPostEntity();
         TUserEntity sender = dbLogic.getUserByUsername(senderName);

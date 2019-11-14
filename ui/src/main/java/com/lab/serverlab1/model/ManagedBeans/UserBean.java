@@ -77,36 +77,40 @@ public class UserBean implements Serializable {
     }
 
     public boolean isLoggedIn(){
-     //   String res = checkCookie();
-      //  System.out.println("cookie result:" + res);
-       // if(res.equals("")) return false;
-
-       // userInfo.setUsername(res);
         return isLoggedIn;
-      //  return true;
     }
+
+    /**
+     * Confirms credentials for current user
+     * @return a String corresponding to the success or failure of the check
+     */
     public String checkCredentials(){
-        System.out.println("Get details");
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
         if(RequestManager.checkCredentials(userInfo.getUsername(), userInfo.getPassword())){
-         //   Cookie usernameCookie = new Cookie("username", userInfo.getUsername());
-          //  usernameCookie.setMaxAge(3600);
-           // response.addCookie(usernameCookie);
             isLoggedIn = true;
             userNameToView = userInfo.getUsername();
             return "Success";
         }
         return "Failure";
     }
+
+    /**
+     * Sets the userInfo to be displayed in a log
+     */
     public void setUserInfoLog(){
         userInfoLog = RequestManager.getUserByUsername(userNameToView);
     }
+
+    /**
+     * returns a list of all usernames for the current search string (searchName)
+     * @return
+     */
     public List<String> getUserNames() {
-        System.out.println("I getusernames");
         userNames = RequestManager.getUsernamesByLetters(userInfo, searchName);
         return userNames;
     }
+
 
     public void setUserNames(List<String> userNames) {
         this.userNames = userNames;
@@ -116,22 +120,11 @@ public class UserBean implements Serializable {
         return userInfo.getUsername();
     }
     public String logOut(){
-
-      /*  System.out.println("log out");
-        FacesContext context = FacesContext.getCurrentInstance();
-        HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
-        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        for(Cookie c : request.getCookies()){
-            if(c.getName().equalsIgnoreCase("username")){
-                c.setMaxAge(0);
-                response.addCookie(c);
-            }
-        }*/
         isLoggedIn = false;
         userNameToView = "";
         return "LogOut";
     }
-
+    /*
     public String checkCookie(){
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -145,29 +138,50 @@ public class UserBean implements Serializable {
             }
         }
         return username;
-    }
+    }*/
 
+    /**
+     * Sets current user to be the username to view
+     * @return "Log"
+     */
     public String showOwnLog(){
         userNameToView = userInfo.getUsername();
         return "Log";
     }
 
+    /**
+     * Sets the username to view for log
+     * @param userNameToView
+     * @return "Log"
+     */
     public String showUserLog(String userNameToView){
         this.userNameToView = userNameToView;
         return "Log";
     }
 
+    /**
+     * Sets up to create a new post
+     * @return
+     */
     public String createNewPost(){
         this.receiverName = userNameToView;
         return "SendMessage";
     }
 
+    /**
+     * Send a new post corresponding to the given information
+     * @return "log"
+     */
     public String sendNewPost(){
         System.out.println("sender: " + userInfo.getUsername() + ", receiver: " + receiverName + ", content: " + newPostContent + ", send private:" + sendPrivate);
         RequestManager.createNewPost(userInfo, new PostInfo(userInfo.getUsername(), receiverName, newPostContent, new Date(), sendPrivate));
         return "log";
     }
 
+    /**
+     * Confirms that a new user has been created
+     * @return a boolean representing the Success or Failure of the operation
+     */
     public String confirmNewUser(){
         boolean result = RequestManager.addNewUser(userInfo.getUsername(), userInfo.getPassword(), userInfo.getName(), userInfo.getAge());
         if(result == true){
