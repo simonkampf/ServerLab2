@@ -4,7 +4,6 @@ import com.lab.serverlab1.model.DAL.DBLogic;
 import com.lab.serverlab1.model.DAL.TPostEntity;
 import com.lab.serverlab1.model.DAL.TUserEntity;
 import com.lab.serverlab1.model.DAL.TUserpostEntity;
-import com.lab.serverlab1.model.ManagedBeans.UserBean;
 import java.sql.Timestamp;
 
 import java.util.ArrayList;
@@ -24,6 +23,14 @@ public class BllHandler {
             System.out.println(p.toString());
         }
         System.out.println();
+    }
+
+    public static DBLogic getDbLogic() {
+        return dbLogic;
+    }
+
+    public static void setDbLogic(DBLogic dbLogic) {
+        BllHandler.dbLogic = dbLogic;
     }
 
     /**
