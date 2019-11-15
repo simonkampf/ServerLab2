@@ -16,6 +16,7 @@ import java.util.List;
 public class LabRestService {
     private Gson gson = new Gson();
     private boolean isAuthenticated = false;
+
     @GET
     @Path("/getUserByUsername")
     public Response getUserByUsername(@QueryParam("username") String username) {

@@ -12,17 +12,11 @@ import java.util.Date;
 import java.util.List;
 
 public class BllHandler {
-    private static DBLogic dbLogic = new DBLogic();
-    public static void main(String [] args){
-        UserInfo user = getUserByUsername("simon");
-        List<PostInfo> posts = getAllPublicPostsByUser(user.getUsername());
-        System.out.println("Printing user: " + user.getUsername() + " posts");
-        for(PostInfo p : posts){
-            System.out.println(p.toString());
-        }
-        System.out.println();
-    }
 
+    //public static DBLogic dbLogic = new DBLogic();
+
+    //WHEN TESTING..
+    public static DBLogic dbLogic;
 
     public static boolean checkCredentials(String username, String password){
         List<TUserEntity> users = dbLogic.getUsers();
