@@ -9,7 +9,8 @@ import javax.persistence.*;
  * Database Logic
  */
 public class DBLogic {
-    private static EntityManagerFactory emf =
+
+    private EntityManagerFactory emf =
                 Persistence.createEntityManagerFactory("test");
     
     public DBLogic(){

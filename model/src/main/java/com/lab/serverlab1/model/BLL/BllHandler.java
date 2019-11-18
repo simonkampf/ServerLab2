@@ -14,24 +14,10 @@ import java.util.List;
  * Business logic layer
  */
 public class BllHandler {
-    private static DBLogic dbLogic = new DBLogic();
-    public static void main(String [] args){
-        UserInfo user = getUserByUsername("simon");
-        List<PostInfo> posts = getAllPublicPostsByUser(user.getUsername());
-        System.out.println("Printing user: " + user.getUsername() + " posts");
-        for(PostInfo p : posts){
-            System.out.println(p.toString());
-        }
-        System.out.println();
-    }
+    public static DBLogic dbLogic = new DBLogic();
 
-    public static DBLogic getDbLogic() {
-        return dbLogic;
-    }
-
-    public static void setDbLogic(DBLogic dbLogic) {
-        BllHandler.dbLogic = dbLogic;
-    }
+    //WHEN TESTING..
+    //public static DBLogic dbLogic;
 
     /**
      * Validates the credentials of a user
@@ -156,6 +142,12 @@ public class BllHandler {
         return new UserInfo(tUserEntity.getUsername(),
                 "", tUserEntity.getName(), tUserEntity.getAge());
     }
+
+    /**
+     * Get all usernames that starts with or equals the search string
+     * @param searchName
+     * @return
+     */
 
     public static List<String> getUsernamesByLetters(String searchName) {
         if(searchName.length() == 0){
