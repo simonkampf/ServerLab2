@@ -25,3 +25,7 @@ services:
             dockerfile: ./ui/Dockerfile
         ports:
             - 8085:8080
+    canvas:
+        image: canvas
+        ports: 
+            - 3000:3000
