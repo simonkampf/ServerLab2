@@ -5,12 +5,20 @@
     <class>com.lab.serverlab1.model.DAL.TUserEntity</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
+
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
       <property name="hibernate.connection.password" value="hej"/>
       <property name="hibernate.connection.url" value="jdbc:mysql://db:3306/forum"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+
+     <!--   <property name="hibernate.connection.username" value="temp"/>
+        <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+        <property name="hibernate.connection.password" value="hej"/>
+        <property name="hibernate.connection.url" value="jdbc:mysql://db:3306/forum"/>
+        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+        <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>-->
     </properties>
   </persistence-unit>
 </persistence>

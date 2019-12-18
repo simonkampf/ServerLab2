@@ -8,7 +8,21 @@
     <script src="Libraries/p5.js"></script>
     <script src="sketch.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+
   </head>
   <body>
+    <footer>
+        <form name="filenameform" onsubmit="return saveToFile()">
+          File name: <input type="text" name="filename">
+          <input type="submit" value="Save">
+        </form>
+        <br></br>
+        <footer>
+            <form name="openfileform" onsubmit="openFile(); return false">
+              File name: <input type="text" name="filename">
+              <input type="submit" value="Open">
+            </form>
+    </footer>
+    
   </body>
 </html>

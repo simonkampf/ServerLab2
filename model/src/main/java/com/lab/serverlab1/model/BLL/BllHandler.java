@@ -1,14 +1,10 @@
 package com.lab.serverlab1.model.BLL;
 
-import com.lab.serverlab1.model.DAL.DBLogic;
-import com.lab.serverlab1.model.DAL.TPostEntity;
-import com.lab.serverlab1.model.DAL.TUserEntity;
-import com.lab.serverlab1.model.DAL.TUserpostEntity;
+import com.lab.serverlab1.model.DAL.*;
+
 import java.sql.Timestamp;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Business logic layer
@@ -30,6 +26,11 @@ public class BllHandler {
         for(TUserEntity t : users){
             System.out.println(t.getUsername() + ", " + username);
             if(t.getUsername().equals(username) && t.getPassword().equals(password)){
+                System.out.println("Found match");
+                TLoginEntity login = new TLoginEntity();
+                login.settDate(new Timestamp(System.currentTimeMillis()));
+                login.settUserId(t.getIdTUser());
+                dbLogic.createNewLogin(login);
                 return true;
             }
         }
@@ -195,4 +196,50 @@ public class BllHandler {
         }
         return true;
     }
+
+    public static Integer [] getOneWeekLoginHistoryByUser(String userName){
+        TUserEntity user = dbLogic.getUserByUsername(userName);
+        List<TLoginEntity> result = dbLogic.getAllLoginHistoryByUser(user.getIdTUser());
+        for(int i = 0; i < result.size(); i++){
+            System.out.println("Login history for user: " + result.get(i).gettUserId() + result.get(i).gettDate());
+        }
+        return loginListToWeekArray(result);
+    }
+
+    private static Integer [] loginListToWeekArray(List<TLoginEntity> list){
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        Date today = new Date();
+        Integer [] result = {
+            0, 0, 0, 0, 0, 0, 0
+        };
+
+        Date [] dates = new Date[7];
+
+        dates[0] = today;
+        dates[1] = new Date(today.getTime() - (86400000 * 1));
+        dates[2] = new Date(today.getTime() - (86400000 * 2));
+        dates[3] = new Date(today.getTime() - (86400000 * 3));
+        dates[4] = new Date(today.getTime() - (86400000 * 4));
+        dates[5] = new Date(today.getTime() - (86400000 * 5));
+        dates[6] = new Date(today.getTime() - (86400000 * 6));
+
+        for(int i = 0; i < dates.length; i++){
+            System.out.println(dates[i].toString());
+        }
+        for(TLoginEntity t: list){
+            cal1.setTime(t.gettDate());
+            for(int i = 0; i<dates.length; i++){
+                cal2.setTime(dates[i]);
+                if(cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
+                             cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)){
+                    result[i]++;
+                }
+            }
+        }
+
+        return result;
+
+    }
+
 }

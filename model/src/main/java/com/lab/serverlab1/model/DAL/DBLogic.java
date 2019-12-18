@@ -1,6 +1,7 @@
 package com.lab.serverlab1.model.DAL;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
@@ -16,6 +17,8 @@ public class DBLogic {
     public DBLogic(){
         System.out.println("Creating db logic");
     }
+
+
 
     /**
      * Adds a given user to the database
@@ -82,5 +85,20 @@ public class DBLogic {
         em.persist(post);
         em.getTransaction().commit();
         em.close();
+    }
+
+    public void createNewLogin(TLoginEntity login){
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+        em.persist(login);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public List<TLoginEntity> getAllLoginHistoryByUser(int userId){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        return em.createNamedQuery("TLoginEntity.findAllByUser", TLoginEntity.class).setParameter("userId", userId).getResultList();
     }
 }
