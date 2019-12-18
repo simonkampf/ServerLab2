@@ -277,4 +277,47 @@ public class RequestManager {
 
     }
 
+
+    public static String getLoginHistoryToPlot(UserInfo currentUser, String userToView) {
+        HttpGet req = new HttpGet(url + "getLoginHistory?username=" + currentUser.getUsername());
+        req.addHeader("username", currentUser.getUsername());
+        req.addHeader("password", currentUser.getPassword());
+        System.out.println("Sending req: " + req.getURI());
+        Integer[] target = new Integer[7];
+        try{
+            CloseableHttpResponse httpResponse = httpClient.execute(req);
+
+            try{
+                System.out.println(httpResponse.getStatusLine());
+                HttpEntity entity = httpResponse.getEntity();
+                String result = EntityUtils.toString(entity);
+                if(httpResponse.getStatusLine().getStatusCode() != 200){
+                    System.out.println("Could not request getUsernamesByLetters: " +  httpResponse.getStatusLine());
+                    return "";
+                }
+                Type listType = new TypeToken<Integer[]>() {}.getType();
+                target = gson.fromJson(result, listType);
+
+                return convertToNumbersList(target);
+
+            }finally{
+                httpResponse.close();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+
+        }
+        return "";
+    }
+
+    private static String convertToNumbersList(Integer[] target) {
+        String result = "";
+        for(int i = 0; i < target.length - 1; i++){
+            result += i + ",";
+        }
+        result += target[target.length-1];
+        System.out.println("Result: " + result);
+        return result;
+    }
 }

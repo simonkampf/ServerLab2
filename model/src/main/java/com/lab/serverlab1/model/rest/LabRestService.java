@@ -54,7 +54,7 @@ public class LabRestService {
     @Path("/getAllPublicPostsByUser")
     public Response getAllPublicPostsByUser(@HeaderParam("username") String username, @HeaderParam("password") String password,
                                             @QueryParam("username") String userToView){
-        if(!BllHandler.checkCredentials(username, password)){
+        if(BllHandler.checkCredentials(username, password)){
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
         List<PostInfo> posts = BllHandler.getAllPublicPostsByUser(userToView);
@@ -77,7 +77,7 @@ public class LabRestService {
     @Path("/getAllPrivatePostsByUser")
     public Response getAllPrivatePostsByUser(@HeaderParam("username") String username, @HeaderParam("password") String password,
             @QueryParam("username") String privateUser){
-        if(!BllHandler.checkCredentials(privateUser, password)){
+        if(BllHandler.checkCredentials(privateUser, password)){
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
         List<PostInfo> posts = BllHandler.getAllPrivatePostsByUser(privateUser);

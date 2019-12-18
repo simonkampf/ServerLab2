@@ -29,6 +29,16 @@ public class UserBean implements Serializable {
     private String newPostContent;
     private UserInfo userInfoLog;
     public boolean isLoggedIn = false;
+    public String diagramType;
+
+    public String getDiagramType() {
+        return diagramType;
+    }
+
+    public void setDiagramType(String diagramType) {
+        this.diagramType = diagramType;
+    }
+
     public String getNewPostContent() {
         return newPostContent;
     }
@@ -80,6 +90,18 @@ public class UserBean implements Serializable {
         return isLoggedIn;
     }
 
+    public String getDiagramUrl(){
+        String numbersToPlot = RequestManager.getLoginHistoryToPlot(userInfo, userNameToView);
+        String url = "http://localhost:8091/showData?values=" + numbersToPlot + "&plotType=";
+        if(diagramType == null || diagramType.equals("")){
+            url += "pie";
+
+        }else{
+            url += diagramType;
+        }
+        System.out.println("Diagram url: " + url);
+        return url;
+    }
     /**
      * Confirms credentials for current user
      * @return a String corresponding to the success or failure of the check
@@ -146,6 +168,7 @@ public class UserBean implements Serializable {
      */
     public String showOwnLog(){
         userNameToView = userInfo.getUsername();
+        getDiagramUrl();
         return "Log";
     }
 
