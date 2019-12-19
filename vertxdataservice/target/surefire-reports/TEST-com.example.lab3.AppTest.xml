@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.example.lab3.AppTest" time="0.066" tests="1" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="gopherProxySet" value="false"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/Alex/KTH/Åk3/HI1034 Serverutveckling/serverlab3/ServerLab2/vertxdataservice/target/test-classes:/Users/Alex/KTH/Åk3/HI1034 Serverutveckling/serverlab3/ServerLab2/vertxdataservice/target/classes:/Users/Alex/.m2/repository/org/jsoup/jsoup/1.11.3/jsoup-1.11.3.jar:/Users/Alex/.m2/repository/io/vertx/vertx-core/3.8.4/vertx-core-3.8.4.jar:/Users/Alex/.m2/repository/io/netty/netty-common/4.1.42.Final/netty-common-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-buffer/4.1.42.Final/netty-buffer-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-transport/4.1.42.Final/netty-transport-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-handler/4.1.42.Final/netty-handler-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-codec/4.1.42.Final/netty-codec-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-handler-proxy/4.1.42.Final/netty-handler-proxy-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-codec-socks/4.1.42.Final/netty-codec-socks-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-codec-http/4.1.42.Final/netty-codec-http-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-codec-http2/4.1.42.Final/netty-codec-http2-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-resolver/4.1.42.Final/netty-resolver-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-resolver-dns/4.1.42.Final/netty-resolver-dns-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-codec-dns/4.1.42.Final/netty-codec-dns-4.1.42.Final.jar:/Users/Alex/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.9.9/jackson-core-2.9.9.jar:/Users/Alex/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.9.9.1/jackson-databind-2.9.9.1.jar:/Users/Alex/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.jar:/Users/Alex/.m2/repository/org/webjars/npm/vertx3-eventbus-client/3.8.4/vertx3-eventbus-client-3.8.4.jar:/Users/Alex/.m2/repository/org/webjars/npm/sockjs-client/1.4.0/sockjs-client-1.4.0.jar:/Users/Alex/.m2/repository/org/webjars/npm/url-parse/1.4.7/url-parse-1.4.7.jar:/Users/Alex/.m2/repository/org/webjars/npm/querystringify/2.1.1/querystringify-2.1.1.jar:/Users/Alex/.m2/repository/org/webjars/npm/requires-port/1.0.0/requires-port-1.0.0.jar:/Users/Alex/.m2/repository/org/webjars/npm/inherits/2.0.4/inherits-2.0.4.jar:/Users/Alex/.m2/repository/org/webjars/npm/json3/3.3.3/json3-3.3.3.jar:/Users/Alex/.m2/repository/org/webjars/npm/eventsource/1.0.7/eventsource-1.0.7.jar:/Users/Alex/.m2/repository/org/webjars/npm/original/1.0.2/original-1.0.2.jar:/Users/Alex/.m2/repository/org/webjars/npm/debug/3.2.6/debug-3.2.6.jar:/Users/Alex/.m2/repository/org/webjars/npm/ms/2.1.2/ms-2.1.2.jar:/Users/Alex/.m2/repository/org/webjars/npm/faye-websocket/0.11.3/faye-websocket-0.11.3.jar:/Users/Alex/.m2/repository/org/webjars/npm/websocket-driver/0.7.3/websocket-driver-0.7.3.jar:/Users/Alex/.m2/repository/org/webjars/npm/http-parser-js/0.4.10/http-parser-js-0.4.10.jar:/Users/Alex/.m2/repository/org/webjars/npm/safe-buffer/5.2.0/safe-buffer-5.2.0.jar:/Users/Alex/.m2/repository/org/webjars/npm/websocket-extensions/0.1.3/websocket-extensions-0.1.3.jar:/Users/Alex/.m2/repository/io/vertx/vertx-web/3.5.1/vertx-web-3.5.1.jar:/Users/Alex/.m2/repository/io/vertx/vertx-auth-common/3.5.1/vertx-auth-common-3.5.1.jar:/Users/Alex/.m2/repository/io/vertx/vertx-bridge-common/3.5.1/vertx-bridge-common-3.5.1.jar:/Users/Alex/.m2/repository/junit/junit/4.13-rc-1/junit-4.13-rc-1.jar:/Users/Alex/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="java.vm.vendor" value="AdoptOpenJDK"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://adoptopenjdk.net/"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="SE"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/Alex/KTH/Åk3/HI1034 Serverutveckling/serverlab3/ServerLab2/vertxdataservice/target/surefire/surefirebooter16905980470363765036.jar /Users/Alex/KTH/Åk3/HI1034 Serverutveckling/serverlab3/ServerLab2/vertxdataservice/target/surefire 2019-12-18T17-56-51_299-jvmRun1 surefire12213805023384058122tmp surefire_015297452092502893740tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/Alex/KTH/Åk3/HI1034 Serverutveckling/serverlab3/ServerLab2/vertxdataservice/target/test-classes:/Users/Alex/KTH/Åk3/HI1034 Serverutveckling/serverlab3/ServerLab2/vertxdataservice/target/classes:/Users/Alex/.m2/repository/org/jsoup/jsoup/1.11.3/jsoup-1.11.3.jar:/Users/Alex/.m2/repository/io/vertx/vertx-core/3.8.4/vertx-core-3.8.4.jar:/Users/Alex/.m2/repository/io/netty/netty-common/4.1.42.Final/netty-common-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-buffer/4.1.42.Final/netty-buffer-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-transport/4.1.42.Final/netty-transport-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-handler/4.1.42.Final/netty-handler-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-codec/4.1.42.Final/netty-codec-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-handler-proxy/4.1.42.Final/netty-handler-proxy-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-codec-socks/4.1.42.Final/netty-codec-socks-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-codec-http/4.1.42.Final/netty-codec-http-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-codec-http2/4.1.42.Final/netty-codec-http2-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-resolver/4.1.42.Final/netty-resolver-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-resolver-dns/4.1.42.Final/netty-resolver-dns-4.1.42.Final.jar:/Users/Alex/.m2/repository/io/netty/netty-codec-dns/4.1.42.Final/netty-codec-dns-4.1.42.Final.jar:/Users/Alex/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.9.9/jackson-core-2.9.9.jar:/Users/Alex/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.9.9.1/jackson-databind-2.9.9.1.jar:/Users/Alex/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.jar:/Users/Alex/.m2/repository/org/webjars/npm/vertx3-eventbus-client/3.8.4/vertx3-eventbus-client-3.8.4.jar:/Users/Alex/.m2/repository/org/webjars/npm/sockjs-client/1.4.0/sockjs-client-1.4.0.jar:/Users/Alex/.m2/repository/org/webjars/npm/url-parse/1.4.7/url-parse-1.4.7.jar:/Users/Alex/.m2/repository/org/webjars/npm/querystringify/2.1.1/querystringify-2.1.1.jar:/Users/Alex/.m2/repository/org/webjars/npm/requires-port/1.0.0/requires-port-1.0.0.jar:/Users/Alex/.m2/repository/org/webjars/npm/inherits/2.0.4/inherits-2.0.4.jar:/Users/Alex/.m2/repository/org/webjars/npm/json3/3.3.3/json3-3.3.3.jar:/Users/Alex/.m2/repository/org/webjars/npm/eventsource/1.0.7/eventsource-1.0.7.jar:/Users/Alex/.m2/repository/org/webjars/npm/original/1.0.2/original-1.0.2.jar:/Users/Alex/.m2/repository/org/webjars/npm/debug/3.2.6/debug-3.2.6.jar:/Users/Alex/.m2/repository/org/webjars/npm/ms/2.1.2/ms-2.1.2.jar:/Users/Alex/.m2/repository/org/webjars/npm/faye-websocket/0.11.3/faye-websocket-0.11.3.jar:/Users/Alex/.m2/repository/org/webjars/npm/websocket-driver/0.7.3/websocket-driver-0.7.3.jar:/Users/Alex/.m2/repository/org/webjars/npm/http-parser-js/0.4.10/http-parser-js-0.4.10.jar:/Users/Alex/.m2/repository/org/webjars/npm/safe-buffer/5.2.0/safe-buffer-5.2.0.jar:/Users/Alex/.m2/repository/org/webjars/npm/websocket-extensions/0.1.3/websocket-extensions-0.1.3.jar:/Users/Alex/.m2/repository/io/vertx/vertx-web/3.5.1/vertx-web-3.5.1.jar:/Users/Alex/.m2/repository/io/vertx/vertx-auth-common/3.5.1/vertx-auth-common-3.5.1.jar:/Users/Alex/.m2/repository/io/vertx/vertx-bridge-common/3.5.1/vertx-bridge-common-3.5.1.jar:/Users/Alex/.m2/repository/junit/junit/4.13-rc-1/junit-4.13-rc-1.jar:/Users/Alex/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/Alex"/>
+    <property name="user.language" value="sv"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2019-07-16"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/Alex/KTH/Åk3/HI1034 Serverutveckling/serverlab3/ServerLab2/vertxdataservice"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="/Users/Alex/KTH/Åk3/HI1034 Serverutveckling/serverlab3/ServerLab2/vertxdataservice/target/surefire/surefirebooter16905980470363765036.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="11.0.4+11"/>
+    <property name="user.name" value="Alex"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="10.14.6"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="AdoptOpenJDK"/>
+    <property name="localRepository" value="/Users/Alex/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/AdoptOpenJDK/openjdk-build/issues"/>
+    <property name="java.io.tmpdir" value="/var/folders/_2/fpgnkj556xn41f281qzgnbdc0000gp/T/"/>
+    <property name="java.version" value="11.0.4"/>
+    <property name="user.dir" value="/Users/Alex/KTH/Åk3/HI1034 Serverutveckling/serverlab3/ServerLab2/vertxdataservice"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.library.path" value="/Users/Alex/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vendor" value="AdoptOpenJDK"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vm.version" value="11.0.4+11"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="java.class.version" value="55.0"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+  </properties>
+  <testcase name="shouldAnswerWithTrue" classname="com.example.lab3.AppTest" time="0.003"/>
+</testsuite>
