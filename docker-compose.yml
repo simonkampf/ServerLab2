@@ -29,6 +29,7 @@ services:
         depends_on:
             - model
             - canvas
+            - vertx-data-service
         build:
             context: .
             dockerfile: ./ui/Dockerfile

@@ -49,6 +49,15 @@
                     <h:button outcome="inbox" value="Inbox"></h:button>
                     <h:commandButton action="#{userBean.logOut()}" value="LogOut"></h:commandButton>
                 </h:form>
+                <h:form>
+                    <h:selectOneMenu value="#{userBean.diagramType}">
+                        <f:selectItem itemValue="pie" itemLabel="Pie" />
+                        <f:selectItem itemValue="column" itemLabel="Column" />
+                        <f:selectItem itemValue="spline" itemLabel="Spline" />
+                        <f:ajax update="form"/>
+                    </h:selectOneMenu>
+                </h:form>
+
 
             </p>
             <p>

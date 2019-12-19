@@ -13,14 +13,10 @@
             Log for user: <h:outputText value="#{userBean.getUserInfoLog().getUsername()}"></h:outputText>,
             Name: <h:outputText value="#{userBean.getUserInfoLog().getName()}"></h:outputText>,
             Age: <h:outputText value="#{userBean.getUserInfoLog().getAge()}"></h:outputText>
-            <h:selectOneMenu value="#{userBean.diagramType}">
-                <c:selectItem itemValue="pie" itemLabel="Pie" />
-                <c:selectItem itemValue="column" itemLabel="Column" />
-                <c:selectItem itemValue="spline" itemLabel="Spline" />
-            </h:selectOneMenu>
+
             <h:form>
                     <h:commandButton action="#{userBean.createNewPost()}" value="Send a message"></h:commandButton>
-                </h:form>
+            </h:form>
                 #{logBean.populate(userBean.getUserNameToView())}
                 <h:dataTable value="#{logBean.posts}" var="post"
                              border="2"
@@ -42,7 +38,8 @@
                         #{post.content}
                     </h:column>
                 </h:dataTable>
-
+            <iframe src="http://localhost:3000" width="450" height="450"></iframe>
+            <iframe src="#{userBean.getDiagramUrl()}" width="450" height="450"></iframe>
             </ui:define>
         </ui:composition>
     </h:body>

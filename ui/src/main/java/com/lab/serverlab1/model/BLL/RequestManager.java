@@ -279,11 +279,12 @@ public class RequestManager {
 
 
     public static String getLoginHistoryToPlot(UserInfo currentUser, String userToView) {
-        HttpGet req = new HttpGet(url + "getLoginHistory?username=" + currentUser.getUsername());
+        HttpGet req = new HttpGet(url + "getLoginHistory?username=" + userToView);
         req.addHeader("username", currentUser.getUsername());
         req.addHeader("password", currentUser.getPassword());
         System.out.println("Sending req: " + req.getURI());
         Integer[] target = new Integer[7];
+
         try{
             CloseableHttpResponse httpResponse = httpClient.execute(req);
 
@@ -297,7 +298,9 @@ public class RequestManager {
                 }
                 Type listType = new TypeToken<Integer[]>() {}.getType();
                 target = gson.fromJson(result, listType);
-
+                for(int i = 0; i<target.length;i++){
+                    System.out.println(target[i]);
+                }
                 return convertToNumbersList(target);
 
             }finally{
@@ -314,7 +317,7 @@ public class RequestManager {
     private static String convertToNumbersList(Integer[] target) {
         String result = "";
         for(int i = 0; i < target.length - 1; i++){
-            result += i + ",";
+            result += target[i] + ",";
         }
         result += target[target.length-1];
         System.out.println("Result: " + result);
