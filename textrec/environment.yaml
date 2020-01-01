@@ -1,0 +1,61 @@
+name: '3.5'
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - absl-py=0.5.0=py_0
+  - astor=0.7.1=py_0
+  - blas=2.14=mkl
+  - ca-certificates=2019.11.28=hecc5488_0
+  - certifi=2018.8.24=py35_1001
+  - gast=0.3.2=py_0
+  - grpcio=1.14.1=py35he089993_0
+  - icc_rt=2019.0.0=h0cc432a_1
+  - intel-openmp=2019.4=245
+  - libblas=3.8.0=14_mkl
+  - libcblas=3.8.0=14_mkl
+  - liblapack=3.8.0=14_mkl
+  - liblapacke=3.8.0=14_mkl
+  - libprotobuf=3.6.0=h1a1b453_1000
+  - m2w64-gcc-libgfortran=5.3.0=6
+  - m2w64-gcc-libs=5.3.0=7
+  - m2w64-gcc-libs-core=5.3.0=7
+  - m2w64-gmp=6.1.0=2
+  - m2w64-libwinpthread-git=5.0.0.4634.697f757=2
+  - markdown=3.1.1=py_0
+  - mkl=2019.4=245
+  - msys2-conda-epoch=20160418=1
+  - numpy=1.14.2=py35h5c71026_0
+  - openssl=1.0.2t=hfa6e2cd_0
+  - pip=10.0.1=py35_0
+  - protobuf=3.6.0=py35he025d50_0
+  - python=3.5.6=he025d50_0
+  - six=1.11.0=py35_1
+  - tensorboard=1.10.0=py35_0
+  - tensorflow=1.10.0=py35_0
+  - termcolor=1.1.0=py_2
+  - vc=14.1=h0510ff6_4
+  - vs2015_runtime=14.16.27012=hf0eaf9b_1
+  - werkzeug=0.16.0=py_0
+  - wheel=0.31.1=py35_0
+  - wincertstore=0.2=py35hfebbdb8_0
+  - zlib=1.2.11=h2fa13f4_1006
+  - pip:
+    - annoy==1.16.2
+    - chardet==3.0.4
+    - click==7.0
+    - flask==1.1.1
+    - idna==2.8
+    - itsdangerous==1.1.0
+    - jinja2==2.10.3
+    - jsonpickle==1.2
+    - markupsafe==1.1.1
+    - nltk==3.4.5
+    - opencv-python==4.1.2.30
+    - psutil==5.6.7
+    - requests==2.22.0
+    - scipy==1.4.0
+    - setuptools==39.1.0
+    - urllib3==1.25.7
+prefix: C:\Users\simon\Anaconda3\envs\3.5
+

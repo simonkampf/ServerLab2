@@ -11,7 +11,24 @@
          <ui:composition template="/template.xhtml">
             <ui:define name="content">
                <p>
-                  detta är från indexsidan
+                  <h:form enctype="multipart/form-data">
+                     <h:inputFile value="#{userBean.uploadFile}">
+                        <f:ajax listener="#{userBean.handleImage}" render="imagelist" />
+                     </h:inputFile>
+                     <h:dataTable id="imagelist" value="#{userBean.similarImages}" var="image"
+                                  border="2"
+                                  cellspacing="1" cellpadding="1">
+                        <h:column>
+                           <f:facet name="header">Filename</f:facet>
+                           #{image.fileName}
+                        </h:column>
+                        <h:column>
+                           <f:facet name="header">Similarity</f:facet>
+                           #{image.getSimilarityPercentage()}
+                        </h:column>
+                     </h:dataTable>
+                  </h:form>
+
                </p>
             </ui:define>
          </ui:composition>

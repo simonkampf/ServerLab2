@@ -20,7 +20,7 @@
             </h:selectOneMenu>
             <h:form>
                     <h:commandButton action="#{userBean.createNewPost()}" value="Send a message"></h:commandButton>
-                </h:form>
+            </h:form>
                 #{logBean.populate(userBean.getUserNameToView())}
                 <h:dataTable value="#{logBean.posts}" var="post"
                              border="2"

@@ -12,10 +12,15 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+
 
 @SessionScoped
 @ManagedBean
@@ -30,6 +35,47 @@ public class UserBean implements Serializable {
     private UserInfo userInfoLog;
     public boolean isLoggedIn = false;
     public String diagramType;
+    private Part uploadFile;
+
+    public List<SimilarImage> getSimilarImages() {
+        return similarImages;
+    }
+
+    public void setSimilarImages(List<SimilarImage> similarImages) {
+        this.similarImages = similarImages;
+    }
+
+    private List<SimilarImage> similarImages;
+    public Part getUploadFile() {
+        return uploadFile;
+    }
+
+    public void setUploadFile(Part uploadFile) {
+        this.uploadFile = uploadFile;
+    }
+
+
+    public void handleImage(){
+
+        System.out.println(uploadFile.getSubmittedFileName() + ", " +  uploadFile.getSize());
+        String fileName = uploadFile.getSubmittedFileName();
+        String fileEnding = fileName.substring(fileName.lastIndexOf('.') + 1);
+        if(!fileEnding.equals("jpg")){
+
+            return;
+        }
+        try (InputStream input = uploadFile.getInputStream()) {
+            byte [] result = new byte[(int)uploadFile.getSize()];
+            input.read(result);
+
+            String encodedString = Base64.getEncoder().encodeToString(result);
+            similarImages = RequestManager.postImageForComparison(encodedString);
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+    }
 
     public String getDiagramType() {
         return diagramType;
