@@ -3,13 +3,18 @@ package com.lab.serverlab1.model.BLL;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import com.lab.serverlab1.model.ManagedBeans.SimilarImage;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -20,6 +25,8 @@ public class RequestManager {
     private static CloseableHttpClient httpClient = HttpClients.createDefault();
     private static Gson gson = new Gson();
     private static String url = "http://model:8080/Model/";
+    private static String imageComparisonUrl = "http://host.docker.internal:5000/images/upload";
+
     public RequestManager(){
     }
 
@@ -312,6 +319,48 @@ public class RequestManager {
 
         }
         return "";
+    }
+
+
+    public static List<SimilarImage> postImageForComparison(String imgString){
+
+        HttpPost req = new HttpPost(imageComparisonUrl);
+        req.addHeader("content-type", "image/jpeg");
+        try{
+            StringEntity stringEntity = new StringEntity(imgString);
+            req.getRequestLine();
+            req.setEntity(stringEntity);
+
+            CloseableHttpResponse httpResponse = httpClient.execute(req);
+
+            System.out.println(httpResponse.getStatusLine());
+            HttpEntity entity = httpResponse.getEntity();
+            String result = EntityUtils.toString(entity);
+
+            JSONParser jsonParser = new JSONParser();
+            JSONArray jsonArr =(JSONArray) jsonParser.parse(result);
+            List<SimilarImage> similarImages = new ArrayList<>();
+            for(Object o : jsonArr){
+                JSONObject similarImage = (JSONObject) o;
+                String imageName = (String) similarImage.get("filename");
+                System.out.println("img name: " + imageName);
+
+                String similarity = (String) similarImage.get("similarity");
+                System.out.println("similarity: " + similarity);
+
+                float sim = Float.parseFloat(similarity);
+                similarImages.add(new SimilarImage(imageName, sim));
+            }
+            for(SimilarImage s : similarImages){
+                System.out.println("imagename: " + s.getFileName() + ", similarity: " + s.getSimilarity());
+            }
+            System.out.println(result);
+            similarImages.remove(0);
+            return similarImages;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return new ArrayList<SimilarImage>();
     }
 
     private static String convertToNumbersList(Integer[] target) {
