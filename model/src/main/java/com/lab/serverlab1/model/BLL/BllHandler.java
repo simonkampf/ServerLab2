@@ -30,13 +30,32 @@ public class BllHandler {
                 TLoginEntity login = new TLoginEntity();
                 login.settDate(new Timestamp(System.currentTimeMillis()));
                 login.settUserId(t.getIdTUser());
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * Creates a new login
+     * @param username the username
+     * @param password the password
+     * @return boolean representing the result
+     */
+    public static boolean checkLogin(String username, String password){
+        List<TUserEntity> users = dbLogic.getUsers();
+        for(TUserEntity t : users){
+            System.out.println(t.getUsername() + ", " + username);
+            if(t.getUsername().equals(username) && t.getPassword().equals(password)){
+                System.out.println("Found match");
+                TLoginEntity login = new TLoginEntity();
+                login.settDate(new Timestamp(System.currentTimeMillis()));
+                login.settUserId(t.getIdTUser());
                 dbLogic.createNewLogin(login);
                 return true;
             }
         }
         return false;
     }
-
     /**
      * Adds a new user to the database according to the parameters
      * @param username

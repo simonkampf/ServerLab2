@@ -96,7 +96,7 @@ public class LabRestService {
     @GET // This annotation indicates GET request
     @Path("/checkCredentials")
     public Response checkCredentials(@QueryParam("username") String username, @QueryParam("password") String password) {
-        boolean result = BllHandler.checkCredentials(username, password);
+        boolean result = BllHandler.checkLogin(username, password);
         if(result == true){
             String json = gson.toJson(result);
             isAuthenticated = true;
