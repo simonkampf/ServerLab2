@@ -136,10 +136,13 @@ public class UserBean implements Serializable {
     }
 
     public String getDiagramUrl(){
+
+
         System.out.println("VALD PLOT: "+diagramType);
 
         String numbersToPlot = RequestManager.getLoginHistoryToPlot(userInfo, userNameToView);
-        String url = "http://localhost:8091/showData?values=" + numbersToPlot + "&plotType=";
+        String url = "http://localhost:8091/showData?userId=6&plotType=";
+        //String url = "http://localhost:8091/showData?values=" + numbersToPlot + "&plotType=";
         if(diagramType == null || diagramType.equals("")){
             url += "pie";
 
@@ -149,6 +152,8 @@ public class UserBean implements Serializable {
         System.out.println("Diagram url: " + url);
         return url;
     }
+
+
     /**
      * Confirms credentials for current user
      * @return a String corresponding to the success or failure of the check

@@ -2,12 +2,12 @@ version: "3.7"
 
 services:
     db:
-        build: 
+        build:
             context: .
             dockerfile: ./docker/sql_docker/Dockerfile
         environment:
             MYSQL_ROOT_PASSWORD: hej
-        ports: 
+        ports:
             - 3306:3306
     model:
         depends_on:
@@ -17,10 +17,12 @@ services:
             dockerfile: ./model/Dockerfile
         ports:
             - 8080:8080
-    vertx-data-service:
-        image: vertx-data-service
-        ports:
-            - 8091:8091
+    #vertx-data-service:
+        #depends_on:
+            #- db
+        #image: vertx-data-service
+        #ports:
+            #- 8091:8091
     canvas:
         image: canvas
         ports:
@@ -29,10 +31,9 @@ services:
         depends_on:
             - model
             - canvas
-            - vertx-data-service
+            #- vertx-data-service
         build:
             context: .
             dockerfile: ./ui/Dockerfile
         ports:
             - 8085:8080
-    
